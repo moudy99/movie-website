@@ -1,0 +1,42 @@
+{
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "plop": "node --experimental-specifier-resolution=node plop"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@reduxjs/toolkit": "^2.2.3",
+    "bootstrap": "^5.3.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icon": "^1.0.0",
+    "react-icons": "^5.1.0",
+    "react-paginate": "^8.2.0",
+    "react-redux": "^9.1.1",
+    "react-router-dom": "^6.22.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.1.1",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "create-vite-plugin": "^0.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "globals": "^15.0.0",
+    "plop": "^4.0.1",
+    "vite": "^5.2.0"
+  },
+  "plop": {
+    "plopfile": "plopfile.cjs"
+  }
+}

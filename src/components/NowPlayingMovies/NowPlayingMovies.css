@@ -1,0 +1,130 @@
+.Now_playing_movies, .current_popular_movies, .Top_rated_movies, .person_movies {
+     cursor: pointer;
+     position: relative; 
+     transition-duration: 0.3s;
+     transition-timing-function: linear;
+   }
+   
+   .Now_playing_movies:hover, .current_popular_movies:hover, .Top_rated_movies:hover, .person_movies:hover {
+     opacity: 0.7;
+   }
+   
+   .poster {
+     width: 100%; 
+     border-radius: 20px;
+     transition-duration: 0.3s;
+     transition-timing-function: linear;
+   }
+   
+   .movie_title {
+     text-overflow: ellipsis;
+     height: 28px;
+     font-size: 18px;
+     font-weight: 500;
+     white-space: nowrap;
+     overflow: hidden;
+     margin: 9px 4px 2px;
+   }
+   
+   .date_rating {
+     display: flex;
+     align-items: center;
+     justify-content: space-around;
+     gap: 2px;
+     color: darkblue;
+     padding: 0;
+     margin-bottom: 1rem;
+
+   }
+   
+   .date {
+     font-size: 5px;
+     color: rgb(153, 153, 153);
+     padding: 0;
+     margin: 0;
+
+   }
+   
+   .dot2 {
+     color: rgb(153, 153, 153);
+     margin: 0px 7px;
+     padding: 0;
+   }
+   
+   .dot {
+     width: 5px;
+     height: 5px;
+     background-color: rgb(255, 255, 255);
+     border-radius: 50%;
+   }
+   
+   .rating {
+     font-size: 13px;
+     display:flex;
+     align-items: center;
+     justify-content: center;
+    gap: 2px;
+     color: rgb(153, 153, 153);
+     flex: 1 1 0%;
+     padding: 0;
+     margin: 0;
+   }
+   
+   .category {
+     font-size: 10px;
+     color: rgb(217, 217, 217);
+     border-width: 1px;
+     border-style: solid;
+     border-color: rgb(118, 118, 118);
+     border-image: initial;
+     padding: 2px 4px;
+     border-radius: 4px;
+   }
+   
+   .Now_playing_movies:hover .poster,
+   .current_popular_movies:hover .poster,
+   .Top_rated_movies:hover .poster,
+   .person_movies:hover .poster {
+     opacity: 0.7;
+     transform: scale(1.07);
+     transition-duration: 0.3s;
+     transition-timing-function: linear;
+   }
+   
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination .page-item {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.pagination .page-link {
+  padding: 8px 12px;
+  color: #333;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination .page-link:hover {
+  background-color: #e9ecef;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.pagination .page-item.disabled .page-link {
+  pointer-events: none;
+  color: #6c757d;
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+}

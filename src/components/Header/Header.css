@@ -1,0 +1,24 @@
+.bg-custom {
+     background-color: #ffd900 !important;
+   }
+   
+   .navbar-brand {
+     font-weight: 600;
+     font-size: 18pt;
+     -webkit-user-select: none;
+        -moz-user-select: none;
+         -ms-user-select: none;
+             user-select: none;
+   }
+   
+   .navbar-light .navbar-nav .nav-link {
+     font-weight: 600 !important;
+     margin-top: 5px;
+   }
+.fav-num{
+  background-color: #dc3545;
+  color: white;
+  margin: 0 10px;
+  border-radius: 9px;
+  box-shadow: -4px 4px 5px #0000005c;
+}
