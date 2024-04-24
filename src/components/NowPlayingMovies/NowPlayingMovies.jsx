@@ -8,6 +8,7 @@ import Loader from "../Loader";
 
 const API_KEY = "6b0d387af9e025e2ea2cb28f2470f077";
 const BASE_API_URL = "https://api.themoviedb.org/3/movie";
+// const BASE_API_URL = "https://api.themoviedb.org/3/movie123445564665";
 
 const NowPlayingMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -18,6 +19,7 @@ const NowPlayingMovies = () => {
   const dispatch = useDispatch();
 
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(null);
   useEffect(() => {
     fetchMovies();
   }, [currentPage]);
@@ -30,16 +32,19 @@ const NowPlayingMovies = () => {
           return response.json();
         } else {
           setIsLoaded(false);
-          throw new Error("Network response was not ok.");
+          throw new Error("Failed to fetch movies");
         }
       })
       .then((data) => {
-        setIsLoaded(true);
+        setTimeout(() => {
+          setIsLoaded(true);
+        }, 1000);
         setMovies(data.results);
         setTotalPages(data.total_pages);
       })
       .catch((error) => {
-        setIsLoaded(false);
+        setIsLoaded(true);
+        setError(error);
 
         console.error("Error fetching data:", error);
       });
@@ -86,7 +91,11 @@ const NowPlayingMovies = () => {
             <Loader />
           </div>
         )}
-
+        {error && (
+          <p className="error display-5 text-danger text-center">
+            {error.message}
+          </p>
+        )}
         {isLoaded &&
           movies.map((movie) => (
             <div key={movie.id} className="col-lg-2 col-md-3 col-sm-4 col-6">
