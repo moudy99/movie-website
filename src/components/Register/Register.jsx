@@ -93,6 +93,7 @@ const Register = () => {
             value={email}
             onChange={handleEmailChange}
             placeholder="Enter your email"
+            required
           />
           {errors.email && (
             <span className="error-message text-danger ">{errors.email}</span>
@@ -106,6 +107,7 @@ const Register = () => {
             value={password}
             onChange={handlePasswordChange}
             placeholder="Enter your password"
+            required
           />
           {errors.password && (
             <span className="error-message text-danger ">
@@ -121,6 +123,7 @@ const Register = () => {
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
             placeholder="Confirm your password"
+            required
           />
           {errors.confirmPassword && (
             <span className="error-message text-danger ">
@@ -136,6 +139,7 @@ const Register = () => {
             value={username}
             onChange={handleUsernameChange}
             placeholder="Enter your username"
+            required
           />
           {errors.username && (
             <span className="error-message text-danger ">
