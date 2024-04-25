@@ -1,13 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "../NowPlayingMovies/NowPlayingMovies.css";
 import { removeFav } from "../../Store/Slices/FavMovies";
+import LanguageContext from "../../context/LanguageContenxt";
 
 const API_KEY = "6b0d387af9e025e2ea2cb28f2470f077";
 const BASE_API_URL = "https://api.themoviedb.org/3/movie";
 
 const WatchList = () => {
+  const [language] = useContext(LanguageContext);
+
+  const isArabic = language === "ar";
+
+  const rtlClass = isArabic ? "rtl" : "";
   const [movies, setMovies] = useState([]);
 
   // Get favorites from Redux store
@@ -36,7 +42,7 @@ const WatchList = () => {
   };
 
   return (
-    <div className="Now_playing_movies_div container mt-5">
+    <div className={`Now_playing_movies_div container mt-5 ${rtlClass}`}>
       <div className="row">
         {movies.map((movie) => (
           <div key={movie.id} className="col-lg-2 col-md-3 col-sm-4 col-6">

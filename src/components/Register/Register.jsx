@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./Register.css";
+import LanguageContext from "../../context/LanguageContenxt";
 
 const Register = () => {
+  const [language] = useContext(LanguageContext);
+  const isArabic = language === "ar";
+  const rtlClass = isArabic ? "rtl" : "";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -57,42 +62,60 @@ const Register = () => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      errors.email = "Invalid email address";
+      errors.email =
+        language === "ar"
+          ? "البريد الإلكتروني غير صالح"
+          : "Invalid email address";
     }
 
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordRegex.test(password)) {
-      errors.password = "Password must be at least 8 characters, and complex";
+      errors.password =
+        language === "ar"
+          ? "يجب أن تكون كلمة المرور على الأقل ٨ أحرف ومعقدة"
+          : "Password must be at least 8 characters, and complex";
     }
-
     if (password !== confirmPassword) {
-      errors.confirmPassword = "Passwords do not match";
+      errors.confirmPassword =
+        language === "ar"
+          ? "كلمات المرور غير متطابقة"
+          : "Passwords do not match";
     }
 
     if (/\s/.test(username)) {
-      errors.username = "Username cannot contain spaces";
+      errors.username =
+        language === "ar"
+          ? "لا يمكن أن يحتوي اسم المستخدم على مسافات"
+          : "Username cannot contain spaces";
     }
 
     if (age !== "" && (isNaN(age) || age < 18)) {
-      errors.age = "Age must be a number and at least 18";
+      errors.age =
+        language === "ar"
+          ? "يجب أن يكون العمر رقمًا وعلى الأقل ١٨"
+          : "Age must be a number and at least 18";
     }
 
     return errors;
   };
 
   return (
-    <div className="register">
+    <div className={`register ${rtlClass}`}>
       <form className="register-form" onSubmit={handleSubmit}>
-        <h2>Register</h2>
+        <h2>{isArabic ? "تسجيل" : "Register"}</h2>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">
+            {isArabic ? "البريد الإلكتروني" : "Email"}
+          </label>
           <input
             type="email"
             id="email"
             value={email}
             onChange={handleEmailChange}
-            placeholder="Enter your email"
+            placeholder={
+              isArabic ? "ادخل بريدك الإلكتروني" : "Enter your email"
+            }
             required
           />
           {errors.email && (
@@ -100,13 +123,15 @@ const Register = () => {
           )}
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">
+            {isArabic ? "كلمة السر" : "Password"}
+          </label>
           <input
             type="password"
             id="password"
             value={password}
             onChange={handlePasswordChange}
-            placeholder="Enter your password"
+            placeholder={isArabic ? "ادخل كلمة السر" : "Enter your password"}
             required
           />
           {errors.password && (
@@ -116,13 +141,15 @@ const Register = () => {
           )}
         </div>
         <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword">
+            {isArabic ? "تاكيد كلمة السر" : "Confirm Password"}
+          </label>
           <input
             type="password"
             id="confirmPassword"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
-            placeholder="Confirm your password"
+            placeholder={isArabic ? "تأكيد كلمة السر" : "Confirm your password"}
             required
           />
           {errors.confirmPassword && (
@@ -132,13 +159,15 @@ const Register = () => {
           )}
         </div>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">
+            {isArabic ? "اسم المستخدم" : "UserName"}
+          </label>
           <input
             type="text"
             id="username"
             value={username}
             onChange={handleUsernameChange}
-            placeholder="Enter your username"
+            placeholder={isArabic ? "ادخل اسم المستخدم" : "Enter your username"}
             required
           />
           {errors.username && (
@@ -148,20 +177,20 @@ const Register = () => {
           )}
         </div>
         <div className="form-group">
-          <label htmlFor="age">Age</label>
+          <label htmlFor="age">{isArabic ? "العمر" : "Age"}</label>
           <input
             type="number"
             id="age"
             value={age}
             onChange={handleAgeChange}
-            placeholder="Enter your age"
+            placeholder={isArabic ? "ادخل عمرك" : "Enter your age"}
           />
           {errors.age && (
             <span className="error-message text-danger ">{errors.age}</span>
           )}
         </div>
         <div className="button-container">
-          <button type="submit">Register</button>
+          <button type="submit">{isArabic ? "تسجيل" : "Register"}</button>
         </div>
       </form>
     </div>

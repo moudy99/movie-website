@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/580a7324842216f1d2654c4acd3ae541.png";
+import { useContext } from "react";
 import { useSelector } from "react-redux";
 import "./Header.css";
-
+import LanguageContext from "../../context/LanguageContenxt";
 const Header = () => {
+  let [language, setLanguage] = useContext(LanguageContext);
+  console.log(language);
   const favoritesCount = useSelector((state) => state.favMovies.count);
 
+  const isArabic = language === "ar";
+
+  const rtlClass = isArabic ? "rtl" : "";
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-custom p-0 ">
+    <nav
+      className={`navbar navbar-expand-lg navbar-light bg-custom p-0 ${rtlClass}`}
+    >
+      {" "}
       <div className="container-fluid">
         <Link className="navbar-brand" to={"/"}>
           <img src={logo} alt="" style={{ width: "50px" }} />
@@ -23,11 +32,14 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <div
+          className="collapse navbar-collapse d-flex  align-items-center justify-content-center "
+          id="navbarSupportedContent"
+        >
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex  align-items-center justify-content-center ">
             <li className="nav-item">
               <Link to="/movies" className="nav-link active">
-                Movies
+                {language === "en" ? "Movies" : "الافلام"}
               </Link>
             </li>
             <li className="nav-item dropdown">
@@ -39,44 +51,35 @@ const Header = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Type
+                {language === "en" ? "Type" : "النوع"}
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
                   <a className="dropdown-item action" href="#">
-                    Action
+                    {language === "en" ? "Action" : "اكشن"}
                   </a>
                 </li>
                 <li>
                   <a className="dropdown-item" href="#">
-                    Animation
+                    {language === "en" ? "Animation" : "كرتون"}
                   </a>
                 </li>
                 <li>
                   <a className="dropdown-item" href="#">
-                    Comedy
+                    {language === "en" ? "comdy" : "كوميدي"}
                   </a>
                 </li>
                 <li>
                   <a className="dropdown-item" href="#">
-                    Drama
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Sci-Fi
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Thriller
+                    {language === "en" ? "Drama" : "دراما"}
                   </a>
                 </li>
               </ul>
             </li>
             <li className="nav-item">
               <Link to="/WatchList" className="nav-link active">
-                Watch List <i className="fa-solid fa-heart text-danger"></i>
+                {language === "en" ? "Watch List" : "قائمة المفضلة"}
+                <i className="fa-solid fa-heart text-danger"></i>
                 {favoritesCount > 0 && (
                   <span className=" badge fav-num">{favoritesCount}</span>
                 )}
@@ -84,22 +87,40 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <Link to="/register" className="nav-link active text-primary">
-                Create Account
+                {language === "en" ? "Create account" : "انشاء حساب"}
               </Link>
+            </li>
+
+            <li className="nav-item">
+              <select
+                name="language"
+                id="lang"
+                className="form-select "
+                style={{ cursor: "pointer" }}
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+              >
+                <option value="en" style={{ cursor: "pointer" }}>
+                  English
+                </option>
+                <option value="ar" style={{ cursor: "pointer" }}>
+                  Arabic
+                </option>
+              </select>
             </li>
           </ul>
           <form onSubmit={(e) => e.preventDefault()} className="d-flex">
             <input
               className="form-control me-2"
               type="search"
-              placeholder="Search"
+              placeholder={language === "en" ? "Search" : "بحث"}
               aria-label="Search"
             />
             <button
               className="btn btn-outline-success my-2 my-sm-0"
               type="submit"
             >
-              Search
+              {language === "en" ? "Search" : "بحث"}
             </button>
           </form>
         </div>

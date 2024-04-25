@@ -1,16 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "./NowPlayingMovies.css";
 import ReactPaginate from "react-paginate";
 import { addToFave, removeFav } from "../../Store/Slices/FavMovies";
 import Loader from "../Loader";
-
 const API_KEY = "6b0d387af9e025e2ea2cb28f2470f077";
 const BASE_API_URL = "https://api.themoviedb.org/3/movie";
+import LanguageContext from "../../context/LanguageContenxt";
+
 // const BASE_API_URL = "https://api.themoviedb.org/3/movie123445564665";
 
 const NowPlayingMovies = () => {
+  const [language] = useContext(LanguageContext);
+
+  const isArabic = language === "ar";
+
+  const rtlClass = isArabic ? "rtl" : "";
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -84,7 +90,7 @@ const NowPlayingMovies = () => {
   };
 
   return (
-    <div className="Now_playing_movies_div container mt-5">
+    <div className={`Now_playing_movies_div container mt-5 ${rtlClass}`}>
       <div className="row">
         {!isLoaded && (
           <div className="loader text-center">

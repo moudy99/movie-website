@@ -8,19 +8,25 @@ import NotFound from "./components/NotFound/NotFound";
 import WatchList from "./components/WatchList/WatchList";
 import { Provider } from "react-redux";
 import store from "./Store/index";
+import LanguageContext from "./context/LanguageContenxt";
+import { useState } from "react";
+
 const App = () => {
+  const lang = useState("en");
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <Header />
-        <Routes>
-          <Route path="/" element={<LandingSection />} />
-          <Route path="/movies" element={<NowPlayingMovies />} />
-          <Route path="/movie/:id" element={<MovieDetails />} />{" "}
-          <Route path="/register" element={<Register />} />
-          <Route path="/WatchList" element={<WatchList />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <LanguageContext.Provider value={lang}>
+          <Header style={{ direction: "rtl" }} />
+          <Routes>
+            <Route path="/" element={<LandingSection />} />
+            <Route path="/movies" element={<NowPlayingMovies />} />
+            <Route path="/movie/:id" element={<MovieDetails />} />{" "}
+            <Route path="/register" element={<Register />} />
+            <Route path="/WatchList" element={<WatchList />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </LanguageContext.Provider>
       </Provider>
     </BrowserRouter>
   );
